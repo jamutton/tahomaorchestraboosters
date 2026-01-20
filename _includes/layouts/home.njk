@@ -1,6 +1,63 @@
 ---
 layout: layouts/base.njk
-section: home
 ---
+<section class="relative bg-tahoma-blue text-white py-24 overflow-hidden">
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-3xl">
+            <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">
+                {{ hero_text or "Empowering Tahoma Musicians" }}
+            </h1>
+            <p class="text-xl md:text-2xl text-blue-100 mb-10 leading-relaxed">
+                We bridge the gap between district funding and the needs of our talented young musicians.
+            </p>
+            <div class="flex gap-4">
+                <a href="/concerts" class="btn-gold">View Concerts</a>
+                <a href="#intro" class="inline-block py-2 px-6 border-2 border-white/30 rounded-full font-bold hover:bg-white/10 transition-colors">Our Mission</a>
+            </div>
+        </div>
+    </div>
+    <div class="absolute inset-0 opacity-20 bg-[url('/static/img/hero-bg.jpg')] bg-cover bg-center"></div>
+</section>
 
-{{ content | safe }}
+<section id="intro" class="py-20 bg-white">
+    <div class="container mx-auto px-4 max-w-4xl prose prose-xl prose-slate">
+        <h2 class="text-tahoma-blue">Welcome to the Tahoma Orchestra Boosters</h2>
+        <div id="intro-content">
+            {{ intro_text | safe if intro_text else content | safe }}
+        </div>
+    </div>
+</section>
+
+<section class="py-20 bg-slate-50">
+    <div class="container mx-auto px-4">
+        <div class="flex justify-between items-end mb-12">
+            <div>
+                <h2 class="text-4xl font-bold text-tahoma-blue">Latest News</h2>
+                <p class="text-slate-600 mt-2">Updates from the orchestra community</p>
+            </div>
+            <a href="/news" class="text-tahoma-blue font-bold hover:underline">View All News &rarr;</a>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+            {% for post in collections.news | reverse | limit(3) %}
+            <article class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow p-6 flex flex-col">
+                <time class="text-sm font-bold text-tahoma-gold uppercase tracking-wider">{{ post.date | readableDate }}</time>
+                <h3 class="text-xl font-bold my-4 hover:text-tahoma-blue"><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+                <p class="text-slate-600 line-clamp-3 mb-6 flex-grow">{{ post.data.summary }}</p>
+                <a href="{{ post.url }}" class="font-bold text-tahoma-blue">Read More &rarr;</a>
+            </article>
+            {% else %}
+            <p>Check back soon for updates!</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="py-20 bg-tahoma-gold text-tahoma-blue">
+    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-12">
+        <div class="max-w-2xl text-center md:text-left">
+            <h2 class="text-4xl font-black mb-4">Support Our Strings</h2>
+            <p class="text-xl text-tahoma-blue/80 font-medium">Your donations directly fund student travel, instrument repairs, and guest artist workshops.</p>
+        </div>
+        <a href="{{ metadata.donation_url }}" target="_blank" rel="noopener noreferrer" class="bg-tahoma-blue text-white px-10 py-4 rounded-full text-xl font-black shadow-lg hover:transform hover:scale-105 transition-all">Donate Now</a>
+    </div>
+</section>

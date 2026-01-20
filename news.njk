@@ -1,0 +1,37 @@
+---
+layout: layouts/base.njk
+title: News & Announcements
+permalink: /news/
+---
+<section class="py-20 bg-slate-100">
+    <div class="container mx-auto px-4">
+        <h1 class="text-6xl font-black text-tahoma-blue mb-4 text-center">News</h1>
+        <p class="text-xl text-slate-600 text-center max-w-2xl mx-auto">The latest updates, volunteer opportunities, and success stories from the Tahoma Orchestra program.</p>
+    </div>
+</section>
+
+<section class="py-20">
+    <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for post in collections.news | reverse %}
+            <article class="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden flex flex-col group hover:shadow-xl transition-all h-full">
+                <div class="p-8 flex flex-col flex-grow">
+                    <time class="text-sm font-bold text-tahoma-gold uppercase tracking-widest mb-4">{{ post.date | readableDate }}</time>
+                    <h2 class="text-2xl font-black text-tahoma-blue mb-4 group-hover:text-tahoma-gold transition-colors">
+                        <a href="{{ post.url }}">{{ post.data.title }}</a>
+                    </h2>
+                    <p class="text-slate-600 mb-8 line-clamp-4 flex-grow">
+                        {{ post.data.summary }}
+                    </p>
+                    <a href="{{ post.url }}" class="flex items-center gap-2 font-black text-tahoma-blue hover:text-tahoma-gold">
+                        Read Full Story 
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+            </article>
+            {% else %}
+            <p class="text-center col-span-full py-20 text-slate-400 font-bold text-2xl">No news items yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>

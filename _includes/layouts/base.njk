@@ -1,23 +1,65 @@
-<!doctype html>
-<html {% if section %} data-current="{{ section }}"{% endif %} lang="en">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title or metadata.title }}</title>
+    <meta name="description" content="{{ description or metadata.description }}">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body class="bg-slate-50 text-slate-900 flex flex-col min-h-screen">
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="/" class="text-2xl font-black text-tahoma-blue flex items-center gap-2">
+                Tahoma Orchestra Boosters
+            </a>
+            <div class="flex items-center gap-6">
+                <ul class="hidden md:flex gap-6 font-medium">
+                    <li><a href="/" class="hover:text-tahoma-blue">Home</a></li>
+                    <li><a href="/concerts" class="hover:text-tahoma-blue">Concerts</a></li>
+                    <li><a href="/news" class="hover:text-tahoma-blue">News</a></li>
+                </ul>
+                <a href="{{ metadata.donation_url }}" target="_blank" rel="noopener noreferrer" class="btn-primary">Donate</a>
+            </div>
+        </nav>
+    </header>
 
-	{% include "components/head.njk" %}
+    <main class="flex-grow">
+        {{ content | safe }}
+    </main>
 
-	<body>
+    <footer class="bg-tahoma-blue text-white py-12 mt-12">
+        <div class="container mx-auto px-4 grid md:grid-cols-2 gap-8">
+            <div>
+                <h3 class="text-xl font-bold mb-4">Tahoma Orchestra Boosters</h3>
+                <p class="max-w-md text-blue-100">
+                    Supporting the musical growth and education of students in the Tahoma School District Orchestra program.
+                </p>
+                <p class="mt-4 text-sm text-blue-200">
+                    We are a 501(c)(3) non-profit organization.
+                </p>
+            </div>
+            <div class="md:text-right">
+                <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+                <p class="text-blue-100">Email: info@tahomaorchestra.org</p>
+            </div>
+        </div>
+        <div class="container mx-auto px-4 mt-8 pt-8 border-t border-blue-800 text-center text-sm text-blue-300">
+            &copy; {{ metadata.year }} Tahoma Orchestra Boosters. All rights reserved.
+        </div>
+    </footer>
 
-		<header>
-			<em>
-				<a href="{{ '/' | url }}">{{ metadata.title }}</a>
-			</em>
-			{% include "components/nav.njk" %}
-		</header>
-
-		<main>
-			{{ content | safe }}
-		</main>
-
-		{% include "components/footer.njk" %}
-
-	</body>
-
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
+</body>
 </html>

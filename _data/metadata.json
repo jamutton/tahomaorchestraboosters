@@ -1,5 +1,7 @@
 {
-  "title": "Eleventy Netlify Boilerplate",
-  "description": "A template for building a simple blog website with the Eleventy static site generator, Decap CMS, and with deployment to Netlify.",
-  "url": "https://eleventy-netlify-boilerplate.netlify.app"
+  "title": "Tahoma Orchestra Boosters",
+  "description": "Supporting the Maple Valley Tahoma School District Orchestra program and musicians.",
+  "url": "https://tahomaorchestraboosters.c",
+  "donation_url": "https://example.com/donate-now",
+  "year": 2026
 }

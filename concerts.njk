@@ -1,0 +1,41 @@
+---
+layout: layouts/base.njk
+title: Concerts & Events
+permalink: /concerts/
+---
+<section class="py-20 bg-tahoma-blue text-white">
+    <div class="container mx-auto px-4">
+        <h1 class="text-6xl font-black mb-4">Concerts</h1>
+        <p class="text-2xl text-blue-100">Join us for an evening of beautiful music.</p>
+    </div>
+</section>
+
+<section class="py-20">
+    <div class="container mx-auto px-4">
+        <div class="grid gap-12 max-w-5xl mx-auto">
+            {% for concert in collections.concerts | sort(attribute='data.date') | reverse %}
+            <div class="flex flex-col md:flex-row gap-8 bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                <div class="md:w-1/3 shrink-0">
+                    <div class="text-center bg-slate-50 p-6 rounded-2xl border-4 border-tahoma-gold/20">
+                        <span class="block text-sm font-black text-slate-400 uppercase tracking-tighter">Event Date</span>
+                        <span class="block text-4xl font-black text-tahoma-blue">{{ concert.date | readableDate }}</span>
+                    </div>
+                </div>
+                <div class="flex-grow">
+                    <h2 class="text-3xl font-bold text-tahoma-blue mb-2 hover:text-tahoma-gold"><a href="{{ concert.url }}">{{ concert.data.title }}</a></h2>
+                    <p class="text-lg font-medium text-slate-600 mb-6 flex items-center gap-2">
+                         <svg class="w-5 h-5 text-tahoma-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        {{ concert.data.location }}
+                    </p>
+                    <a href="{{ concert.url }}" class="btn-primary">View Program Details</a>
+                </div>
+            </div>
+            {% else %}
+            <div class="text-center py-20 bg-slate-50 rounded-3xl border-2 border-dashed border-slate-200">
+                <p class="text-2xl font-bold text-slate-400">No concerts currently scheduled.</p>
+                <p class="text-slate-500 mt-2">Check back later for updates on the 2026 season!</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

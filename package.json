@@ -1,34 +1,24 @@
 {
-  "name": "eleventy-netlify-boilerplate",
-  "version": "1.0.5",
-  "description": "A boilerplate for building a fast static website with the Eleventy static site generator, for deployment to Netlify.",
+  "name": "tahoma-orchestra-boosters",
+  "version": "1.0.0",
+  "description": "Tahoma School District Orchestra Boosters website",
   "scripts": {
-    "build": "npx @11ty/eleventy",
-    "watch": "npx @11ty/eleventy --watch",
-    "serve": "npx @11ty/eleventy --serve",
-    "debug": "DEBUG=* npx @11ty/eleventy"
+    "start": "npm-run-all --parallel dev:*",
+    "dev:eleventy": "eleventy --serve",
+    "dev:tailwind": "tailwindcss -i ./static/assets/css/input.css -o ./static/assets/css/style.css --watch",
+    "build": "npm-run-all build:*",
+    "build:eleventy": "eleventy",
+    "build:tailwind": "tailwindcss -i ./static/assets/css/input.css -o ./static/assets/css/style.css --minify"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/danurbanowicz/eleventy-netlify-boilerplate"
-  },
-  "author": {
-    "name": "Dan Urbanowicz",
-    "email": "dan.urbanowicz@gmail.com",
-    "url": "https://github.com/danurbanowicz"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/danurbanowicz/eleventy-netlify-boilerplate/issues"
-  },
-  "homepage": "https://github.com/danurbanowicz/eleventy-netlify-boilerplate",
   "devDependencies": {
     "@11ty/eleventy": "^3.1.2",
+    "@11ty/eleventy-img": "^3.1.0",
     "@11ty/eleventy-navigation": "^1.0.4",
-    "clean-css": "^5.3.3",
-    "html-minifier": "^4.0.0",
+    "@tailwindcss/typography": "^0.5.10",
+    "autoprefixer": "^10.4.16",
     "luxon": "^3.7.1",
-    "markdown-it-anchor": "^9.2.0",
-    "uglify-js": "^3.19.3"
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.5"
   }
 }

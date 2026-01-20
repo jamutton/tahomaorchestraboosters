@@ -1,0 +1,38 @@
+---
+layout: layouts/base.njk
+---
+<article class="py-20">
+    <div class="container mx-auto px-4 max-w-4xl">
+        <a href="/concerts" class="text-tahoma-blue font-bold mb-8 inline-block hover:underline">&larr; All Concerts</a>
+        
+        <header class="mb-12">
+            <h1 class="text-5xl font-black text-tahoma-blue mb-4">{{ title }}</h1>
+            <div class="flex flex-wrap gap-6 text-lg font-medium text-slate-600">
+                <span class="flex items-center gap-2">
+                    <svg class="w-6 h-6 text-tahoma-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    {{ date | readableDate }}
+                </span>
+                <span class="flex items-center gap-2">
+                    <svg class="w-6 h-6 text-tahoma-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    {{ location }}
+                </span>
+            </div>
+        </header>
+
+        {% if image %}
+        <div class="mb-12 rounded-3xl overflow-hidden shadow-xl">
+            {% image image, title, "(min-width: 1024px) 800px, 100vw" %}
+        </div>
+        {% endif %}
+
+        <div class="prose prose-xl prose-slate max-w-none">
+            {{ content | safe }}
+        </div>
+
+        <div class="mt-16 p-8 bg-slate-100 rounded-3xl">
+            <h2 class="text-2xl font-bold mb-4">Tickets & Donations</h2>
+            <p class="mb-6 text-slate-700">Admission is free, but donations to the Tahoma Orchestra Boosters are gratefully accepted at the door or online.</p>
+            <a href="{{ metadata.donation_url }}" target="_blank" rel="noopener noreferrer" class="btn-primary">Support the Orchestra</a>
+        </div>
+    </div>
+</article>
