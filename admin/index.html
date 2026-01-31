@@ -12,8 +12,26 @@
 <body>
   <!-- Include the script that builds the page and powers Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  <!-- Include Netlify Identity for authentication -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <script src="https://cdn.auth0.com/js/lock/11.29/lock.min.js"></script>
+  <script>
+    // Initialize Auth0 Lock widget
+    var lock = new Auth0Lock('5Btsw1Fge3HiGMAbcqQ4facMIW6g9XEd', 'tahomaorchestraboosters.us.auth0.com', {
+      auth: {
+        redirectUrl: 'https://enchanting-tanuki-85b671.netlify.app/admin/',
+        responseType: 'token id_token',
+        params: {
+          scope: 'openid profile email'
+        }
+      }
+    });
+
+    // Trigger login when the button is clicked
+    document.getElementById('login-btn').addEventListener('click', function () {
+      lock.show();
+    });
+  </script>
+
   <script type="module" src="/admin/preview-templates/index.js"></script>
   <script>
     if (window.netlifyIdentity) {
