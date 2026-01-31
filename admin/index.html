@@ -5,7 +5,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="dns-prefetch" href="https://unpkg.com">
-  <link rel="dns-prefetch" href="https://identity.netlify.com">
+  <link rel="dns-prefetch" href="https://cdn.auth0.com">
+  <link rel="dns-prefetch" href="https://tahomaorchestraboosters.us.auth0.com">
   <title>Decap CMS</title>
 </head>
 
@@ -32,7 +33,10 @@
     });
   </script>
 
+  <button id="login-btn">Login with Auth0</button>
+
   <script type="module" src="/admin/preview-templates/index.js"></script>
+  <!-- Netlify Identity disabled
   <script>
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", user => {
@@ -48,6 +52,7 @@
       });
     }
   </script>
+-->
 </body>
 
 </html>
